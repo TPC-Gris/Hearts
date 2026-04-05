@@ -3,6 +3,7 @@
 
 std::string GetIp(); // Client
 inline std::string GetName(); // Both
+int GetPort();
 
 Client::Client()
 	: winText(font, ""), loseText(font, "")
@@ -26,9 +27,9 @@ Client::~Client()
 	firstCard = nullptr;
 }
 
-void Client::TryConnect(std::string ip)
+void Client::TryConnect(std::string ip, int port)
 {
-	socket.connect(sf::IpAddress::resolve(ip).value(), 5000);
+	socket.connect(sf::IpAddress::resolve(ip).value(), port);
 		
 }
 
@@ -93,9 +94,11 @@ void Client::ConnectAndSendName()
 	std::string ip = "";
 
 	ip = GetIp();
+	int port = GetPort();
 	name = GetName();
+	
 
-	TryConnect(ip);
+	TryConnect(ip, port);
 	SendName();
 
 	while (true)
@@ -705,6 +708,16 @@ std::string GetIp()
 	std::cin >> ret;
 
 	return ret;
+}
+
+int GetPort()
+{
+	int port = 0;
+
+	std::cout << "Skriv port: ";
+	std::cin >> port;
+
+	return port;
 }
 
 std::string GetName()

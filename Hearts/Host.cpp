@@ -88,7 +88,7 @@ void Host::TryAccept()
 	{
 		clients.push_back(newClient);
 		clients[clients.size() - 1]->socket.setBlocking(false);
-		//std::cout << "Accepted client" << std::endl;
+		std::cout << "Accepted client" << std::endl;
 	}
 	else
 		delete newClient;

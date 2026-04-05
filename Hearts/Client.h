@@ -6,7 +6,7 @@ public:
 	Client();
 	~Client();
 
-	void TryConnect(std::string ip);
+	void TryConnect(std::string ip, int port);
 
 	void SendName();
 
